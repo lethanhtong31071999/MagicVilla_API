@@ -1,12 +1,10 @@
-﻿using MagicVilla_VillaAPI.Models.Dto;
-using Microsoft.AspNetCore.Mvc;
-using MagicVilla_VillaAPI.Data;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.JsonPatch;
 using MagicVilla_VillaAPI.Models;
-using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using MagicVilla_VillaAPI.Repository.IRepository;
 using System.Net;
+using MagicVilla_VillaAPI.Models.Dto.VillaDTO;
 
 namespace MagicVilla_VillaAPI.Controllers
 {
@@ -103,7 +101,7 @@ namespace MagicVilla_VillaAPI.Controllers
                 await _villaRepo.Create(newVilla);
                 await _villaRepo.Save();
                 _response.StatusCode = HttpStatusCode.Created;
-                _response.Result = newVilla;
+                _response.Result = _mapper.Map<VillaDTO>(newVilla);
                 return CreatedAtRoute("GetVilla", new { id = newVilla.Id }, _response);
             }
             catch (Exception ex)

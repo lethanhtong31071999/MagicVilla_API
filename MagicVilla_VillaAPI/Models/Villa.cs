@@ -19,5 +19,7 @@ namespace MagicVilla_VillaAPI.Models
         public string Amenity { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set;}
+
+        public virtual ICollection<VillaNumber> VillaNumbers { get; set; }
     }
 }

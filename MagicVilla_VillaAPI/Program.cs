@@ -21,6 +21,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 builder.Services.AddAutoMapper(typeof(MappingConfig));
 builder.Services.AddScoped<IVillaRepo, VillaRepo>();
+builder.Services.AddScoped<IVillaNumberRepo, VillaNumberRepo>();
 builder.Services.AddControllers(
     opt => opt.ReturnHttpNotAcceptable = true
     ).AddNewtonsoftJson().AddXmlDataContractSerializerFormatters();

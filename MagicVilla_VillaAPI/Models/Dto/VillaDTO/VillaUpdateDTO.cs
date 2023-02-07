@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
 
-namespace MagicVilla_VillaAPI.Models.Dto
+namespace MagicVilla_VillaAPI.Models.Dto.VillaDTO
 {
     public class VillaUpdateDTO
     {

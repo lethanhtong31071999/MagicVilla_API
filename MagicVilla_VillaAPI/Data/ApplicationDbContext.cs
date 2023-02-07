@@ -11,9 +11,11 @@ namespace MagicVilla_VillaAPI.Data
         }
 
         public DbSet<Villa> Villas { get; set; }
+        public DbSet<VillaNumber> VillaNumbers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Villa
             var initialVillas = new List<Villa>()
             {
                 new Villa
