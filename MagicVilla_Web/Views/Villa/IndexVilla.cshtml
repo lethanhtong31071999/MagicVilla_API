@@ -1,0 +1,54 @@
+﻿@using MagicVilla_Web.Models.Dto.VillaDTO;
+@model IEnumerable<VillaDTO>
+@{
+    var index = 0;
+}
+<br />
+<div class="container p-4 border">
+    <div class="row pb-2">
+        <div class="col-md-6 col-12">
+            <h1 class="h2 text-info text-center text-md-start">Villa List</h1>
+        </div>
+        <div class="col-md-6 col-12 d-md-flex justify-content-end">
+            <a class="btn btn-outline-primary d-flex justify-content-center align-items-center" asp-action="CreateVilla" asp-controller="Villa">
+                <i class="bi bi-plus-square me-2"></i>
+                Create New Villa
+            </a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <caption>List of villas</caption>
+            <thead class="table-primary">
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Occupancy</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    index++;
+                    <tr>
+                        <th scope="col">@index</th>
+                        <td>@item.Name</td>
+                        <td>@item.Occupancy</td>
+                        <td>@item.Rate.ToString("c")</td>
+                        <td class="d-md-flex justify-content-end">
+                            <a class="btn btn-success me-md-3 mb-md-0 mb-1 text-center" asp-action="UpdateVilla" asp-controller="Villa" asp-route-id="@item.Id">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                            <a class="btn btn-danger text-center" asp-action="DeleteVilla" asp-controller="Villa" asp-route-id="@item.Id">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

@@ -150,7 +150,7 @@ namespace MagicVilla_VillaAPI.Controllers
             try
             {
                 if (villaUpdateDTO == null || id != villaUpdateDTO.Id) return BadRequest();
-                var isUnique = await _villaRepo.Get(x => x.Name == villaUpdateDTO.Name, isTracked: false) == null;
+                var isUnique = await _villaRepo.Get(x => x.Name == villaUpdateDTO.Name && x.Id != id, isTracked: false) == null;
                 if (!isUnique)
                 {
                     _response.StatusCode = HttpStatusCode.BadRequest;

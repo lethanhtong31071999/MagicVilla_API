@@ -15,13 +15,13 @@ namespace MagicVilla_Web.Services
             url = configuration.GetValue<string>("ServiceUrls:VillaAPI");
         }
 
-        public async Task<T> CreateAsync<T>(VillaDTO villaDTO)
+        public async Task<T> CreateAsync<T>(VillaCreateDTO villaCreateDTO)
         {
             var apiRequest = new APIRequest()
             {
                 APIType = SD.ApiType.POST,
-                Url = $"{url}:7001/api/VillaAPI",
-                Data = villaDTO
+                Url = $"{url}/api/VillaAPI",
+                Data = villaCreateDTO
             };
             return await base.SendAsync<T>(apiRequest);
         }
@@ -31,7 +31,7 @@ namespace MagicVilla_Web.Services
             var apiRequest = new APIRequest()
             {
                 APIType = SD.ApiType.DELETE,
-                Url = $"{url}:7001/api/VillaAPI/{id}",
+                Url = $"{url}/api/VillaAPI/{id}",
             };
             return await base.SendAsync<T>(apiRequest);
         }
@@ -41,7 +41,7 @@ namespace MagicVilla_Web.Services
             var apiRequest = new APIRequest()
             {
                 APIType = SD.ApiType.GET,
-                Url = $"{url}:7001/api/VillaAPI",
+                Url = $"{url}/api/VillaAPI",
             };
             return await base.SendAsync<T>(apiRequest);
         }
@@ -51,7 +51,7 @@ namespace MagicVilla_Web.Services
             var apiRequest = new APIRequest()
             {
                 APIType = SD.ApiType.GET,
-                Url = $"{url}:7001/api/VillaAPI/{id}",
+                Url = $"{url}/api/VillaAPI/{id}",
             };
             return await base.SendAsync<T>(apiRequest);
         }
@@ -61,7 +61,7 @@ namespace MagicVilla_Web.Services
             var apiRequest = new APIRequest()
             {
                 APIType = SD.ApiType.PUT,
-                Url = $"{url}:7001/api/VillaAPI/{villaUpdateDTO.Id}",
+                Url = $"{url}/api/VillaAPI/{villaUpdateDTO.Id}",
                 Data = villaUpdateDTO
             };
             return await base.SendAsync<T>(apiRequest);

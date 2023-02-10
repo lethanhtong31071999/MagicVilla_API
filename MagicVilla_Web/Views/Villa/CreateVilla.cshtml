@@ -1,0 +1,112 @@
+﻿@using MagicVilla_Web.Models.Dto.VillaDTO;
+@model VillaDTO
+
+<form asp-action="CreateVilla" asp-controller="Villa" method="post">
+    <br />
+    <div class="container border p-3">
+        <h1 class="h2 text-primary">Create Villa</h1>
+        <hr />
+
+        <div class="row gy-3">
+            @*NAME*@
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 col-md-2">
+                        <label asp-for="Name" class="form-label">Name</label>
+                    </div>
+                    <div class="col-12 col-md-10">
+                        <input type="text" class="form-control" asp-for="Name" />
+                        <span asp-validation-for="Name" class="text-danger fs-6"></span>
+                    </div>
+                </div>
+            </div>
+            @*Rate*@
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 col-md-2">
+                        <label asp-for="Rate" class="form-label">Rate</label>
+                    </div>
+                    <div class="col-12 col-md-10">
+                        <input type="number" class="form-control" asp-for="Rate" />
+                        <span asp-validation-for="Rate" class="text-danger fs-6"></span>
+                    </div>
+                </div>
+            </div>
+            @*Details*@
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 col-md-2">
+                        <label asp-for="Details" class="form-label">Details</label>
+                    </div>
+                    <div class="col-12 col-md-10">
+                        <textarea class="form-control" rows="3" asp-for="Details"></textarea>
+                        <span asp-validation-for="Details" class="text-danger fs-6"></span>
+                    </div>
+                </div>
+            </div>
+            @*Sqft*@
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 col-md-2">
+                        <label asp-for="Sqft" class="form-label">Sqft</label>
+                    </div>
+                    <div class="col-12 col-md-10">
+                        <input type="number" class="form-control" asp-for="Sqft" />
+                        <span asp-validation-for="Sqft" class="text-danger fs-6"></span>
+                    </div>
+                </div>
+            </div>
+            @*Ocupancy*@
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 col-md-2">
+                        <label asp-for="Occupancy" class="form-label">Occupancy</label>
+                    </div>
+                    <div class="col-12 col-md-10">
+                        <input type="number" class="form-control" asp-for="Occupancy" />
+                        <span asp-validation-for="Occupancy" class="text-danger fs-6"></span>
+                    </div>
+                </div>
+            </div>
+            @*ImageUrl*@
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 col-md-2">
+                        <label asp-for="ImageUrl" class="form-label">ImageUrl</label>
+                    </div>
+                    <div class="col-12 col-md-10">
+                        <input type="tel" class="form-control" asp-for="ImageUrl" />
+                        <span asp-validation-for="ImageUrl" class="text-danger fs-6"></span>
+                    </div>
+                </div>
+            </div>
+            @*Amenity*@
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 col-md-2">
+                        <label asp-for="Amenity" class="form-label">Amenity</label>
+                    </div>
+                    <div class="col-12 col-md-10">
+                        <input type="number" class="form-control" asp-for="Amenity" />
+                        <span asp-validation-for="Amenity" class="text-danger fs-6"></span>
+                    </div>
+                </div>
+            </div>
+            @*Buttons*@
+            <div class="col-12 offset-md-2 col-md-10">
+                <div class="row g-3">
+                    <div class="col-6">
+                        <button class="btn btn-primary w-100" type="submit">Create</button>
+                    </div>
+                    <div class="col-6">
+                        <a class="btn btn-secondary w-100" asp-action="IndexVilla" asp-controller="Villa">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+@*    <partial name="_ValidationScriptsPartial" />*@
+}

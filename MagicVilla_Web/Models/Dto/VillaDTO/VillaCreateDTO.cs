@@ -18,8 +18,8 @@ namespace MagicVilla_Web.Models.Dto.VillaDTO
         [Required]
         public int Occupancy { get; set; }
         [ValidateNever]
-        public string ImageUrl { get; set; }
+        public string? ImageUrl { get; set; }
         [ValidateNever]
-        public string Amenity { get; set; }
+        public string? Amenity { get; set; }
     }
 }
