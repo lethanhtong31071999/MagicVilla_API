@@ -16,6 +16,19 @@ namespace MagicVilla_VillaAPI.Repository
             _dbSet = _db.Set<T>();
         }
 
+        private IQueryable<T> GetIncludedProps(IQueryable<T> query, string includedProps)
+        {
+            var props = includedProps.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries)
+                .Select(x => x[0].ToString().ToUpper() + x.Substring(1).ToLower())
+                .ToList();
+            foreach (var prop in props)
+            {
+                query = query.Include(prop);
+            }
+            var test = query.ToList();
+            return query;
+        }
+
         async public Task Create(T entity)
         {
             await _db.AddAsync(entity);
@@ -31,7 +44,7 @@ namespace MagicVilla_VillaAPI.Repository
             await _db.SaveChangesAsync();
         }
 
-        async public Task<T> Get(Expression<Func<T, bool>> filter = null, bool isTracked = true)
+        async public Task<T> Get(Expression<Func<T, bool>> filter = null, bool isTracked = true, string? includedProps = null)
         {
             IQueryable<T> query = _dbSet;
             if(filter != null)
@@ -39,10 +52,14 @@ namespace MagicVilla_VillaAPI.Repository
                 query = query.Where(filter);
             }
             if(!isTracked) query = query.AsNoTracking();
+            if(includedProps!= null)
+            {
+                query = GetIncludedProps(query, includedProps);
+            }
             return await query.FirstOrDefaultAsync<T>();
         }
 
-        async public Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>> filter = null, bool isTracked = true)
+        async public Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>> filter = null, bool isTracked = true, string? includedProps = null)
         {
             IQueryable<T> query = _dbSet;
             if (filter != null)
@@ -50,6 +67,10 @@ namespace MagicVilla_VillaAPI.Repository
                 query = query.Where(filter);
             }
             if (!isTracked) query = query.AsNoTracking();
+            if (includedProps != null)
+            {
+                query = GetIncludedProps(query, includedProps);
+            }
             return await query.ToListAsync<T>();
         }
     }

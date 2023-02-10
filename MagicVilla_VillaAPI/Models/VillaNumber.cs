@@ -18,8 +18,6 @@ namespace MagicVilla_VillaAPI.Models
         [ForeignKey("Villa")]
         public int VillaId { get; set; }
         [ValidateNever]
-        [IgnoreDataMember]
-        [JsonIgnore]
         public virtual Villa Villa { get; set; }
     }
 }

@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.Serialization;
 
 namespace MagicVilla_VillaAPI.Models.Dto.VillaNumberDTO
 {
@@ -13,6 +11,6 @@ namespace MagicVilla_VillaAPI.Models.Dto.VillaNumberDTO
         public string SpecialDetails { get; set; }
         public int VillaId { get; set; }
         [ValidateNever]
-        public Villa Villa { get; set; }
+        public MagicVilla_VillaAPI.Models.Dto.VillaDTO.VillaDTO Villa { get; set; }
     }
 }
