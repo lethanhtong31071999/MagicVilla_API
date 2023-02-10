@@ -7,8 +7,8 @@ namespace MagicVilla_VillaAPI.Repository.IRepository
     {
         Task Create(T entity);
         void Remove(T entity);
-        Task<T> Get(Expression<Func<T, bool>> filter = null, bool isTracked = true);
-        Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>> filter = null, bool isTracked = true);
+        Task<T> Get(Expression<Func<T, bool>> filter = null, bool isTracked = true, string? includedProps = null);
+        Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>> filter = null, bool isTracked = true, string? includedProps = null);
         Task Save();
     }
 }

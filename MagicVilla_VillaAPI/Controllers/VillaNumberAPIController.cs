@@ -32,7 +32,8 @@ namespace MagicVilla_VillaAPI.Controllers
         {
             try
             {
-                _response.Result = _mapper.Map<List<VillaNumberDTO>>(await _villaNumberRepo.GetAll());
+                var villaNumberFromDba = await _villaNumberRepo.GetAll(includedProps: "villa");
+                _response.Result = _mapper.Map<List<VillaNumberDTO>>(villaNumberFromDba);
                 _response.StatusCode = HttpStatusCode.OK;
                 return Ok(_response);
             }
@@ -45,8 +46,7 @@ namespace MagicVilla_VillaAPI.Controllers
             return _response;
         }
 
-        [HttpGet]
-        [Route("{villaNo}", Name = "GetVillaNumber")]
+        [HttpGet("{villaNo}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(VillaNumberDTO))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -54,7 +54,7 @@ namespace MagicVilla_VillaAPI.Controllers
         {
             try
             {
-                var villaNumberFromDba = await _villaNumberRepo.Get(x => x.VillaNo == villaNo);
+                var villaNumberFromDba = await _villaNumberRepo.Get(x => x.VillaNo == villaNo, includedProps: "villa");
                 if (villaNumberFromDba == null)
                 {
                     _response.IsSuccess = false;

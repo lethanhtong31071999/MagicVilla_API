@@ -46,7 +46,8 @@ namespace MagicVilla_VillaAPI.Controllers
             return _response;
         }
 
-        [HttpGet("{id}", Name = "GetVilla")]
+        [HttpGet]
+        [Route("{id}", Name = "GetVilla")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(VillaDTO))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

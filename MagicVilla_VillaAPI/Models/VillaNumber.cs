@@ -1,5 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace MagicVilla_VillaAPI.Models
 {
@@ -12,8 +15,11 @@ namespace MagicVilla_VillaAPI.Models
         public DateTime CreateAt { get; set; }
         public DateTime UpdateAt { get; set; }
 
-        [ForeignKey("Villas")]
+        [ForeignKey("Villa")]
         public int VillaId { get; set; }
-        public virtual Villa Villas { get; set; }
+        [ValidateNever]
+        [IgnoreDataMember]
+        [JsonIgnore]
+        public virtual Villa Villa { get; set; }
     }
 }
