@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
 
 namespace MagicVilla_Web.Models.Dto.VillaNumberDTO
 {
@@ -10,6 +12,6 @@ namespace MagicVilla_Web.Models.Dto.VillaNumberDTO
         public string SpecialDetails { get; set; }
         public int VillaId { get; set; }
         [ValidateNever]
-        public MagicVilla_Web.Models.Dto.VillaDTO.VillaDTO Villa { get; set; }
+        public virtual MagicVilla_Web.Models.Dto.VillaDTO.VillaDTO Villa { get; set; }
     }
 }

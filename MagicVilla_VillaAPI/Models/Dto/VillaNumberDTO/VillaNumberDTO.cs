@@ -11,6 +11,6 @@ namespace MagicVilla_VillaAPI.Models.Dto.VillaNumberDTO
         public string SpecialDetails { get; set; }
         public int VillaId { get; set; }
         [ValidateNever]
-        public MagicVilla_VillaAPI.Models.Dto.VillaDTO.VillaDTO Villa { get; set; }
+        public virtual MagicVilla_VillaAPI.Models.Dto.VillaDTO.VillaDTO Villa { get; set; }
     }
 }

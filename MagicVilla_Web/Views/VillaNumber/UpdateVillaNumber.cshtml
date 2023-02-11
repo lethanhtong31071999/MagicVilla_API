@@ -1,0 +1,66 @@
+﻿@using MagicVilla_Web.Models.ViewModels;
+@model VillaNumberUpdateVM
+
+<form asp-action="UpdateVillaNumber" asp-controller="VillaNumber" method="post" enctype="multipart/form-data" >
+    <br />
+    <div class="container border p-3">
+        <h1 class="h2 text-primary">Update Villa</h1>
+        <hr />
+
+        <div class="row gy-3">
+            @*Villa No*@
+            <div class="col-12">
+                <div class="row gy-1">
+                    <div class="col-12 col-md-2">
+                        <label asp-for="VillaNumber.VillaNo" class="form-label">Villa No</label>
+                    </div>
+                    <div class="col-12 col-md-10">
+                        <input type="text" class="form-control" asp-for="VillaNumber.VillaNo" />
+                        <span asp-validation-for="VillaNumber.VillaNo" class="text-danger fs-6"></span>
+                    </div>
+                </div>
+            </div>
+            @*Special Details*@
+            <div class="col-12">
+                <div class="row gy-1">
+                    <div class="col-12 col-md-2">
+                        <label asp-for="VillaNumber.SpecialDetails" class="form-label">SpecialDetails</label>
+                    </div>
+                    <div class="col-12 col-md-10">
+                        <textarea class="form-control" rows="3" asp-for="VillaNumber.SpecialDetails"></textarea>
+                        <span asp-validation-for="VillaNumber.SpecialDetails" class="text-danger fs-6"></span>
+                    </div>
+                </div>
+            </div>
+            @*Villa Select*@
+            <div class="col-12">
+                <div class="row gy-1">
+                    <div class="col-12 col-md-2">
+                        <label asp-for="VillaNumber.VillaId" class="form-label">Villa</label>
+                    </div>
+                    <div class="col-12 col-md-10">
+                        <select asp-for="VillaNumber.VillaId" asp-items="Model.VillaList" class="form-control">
+                            <option value="0" disabled>-- Select Villa --</option>
+                        </select>
+                        <span asp-validation-for="VillaNumber.VillaId" class="text-danger fs-6"></span>
+                    </div>
+                </div>
+            </div>
+            @*Buttons*@
+            <div class="col-12 offset-md-2 col-md-10">
+                <div class="row g-3">
+                    <div class="col-6">
+                        <button class="btn btn-primary w-100" type="submit">Update</button>
+                    </div>
+                    <div class="col-6">
+                        <a class="btn btn-secondary w-100" asp-action="IndexVillaNumber" asp-controller="VillaNumber">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @*    <partial name="_ValidationScriptsPartial" />*@
+}

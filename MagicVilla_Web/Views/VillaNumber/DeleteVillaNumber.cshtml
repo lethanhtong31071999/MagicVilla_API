@@ -1,0 +1,65 @@
+﻿@using MagicVilla_Web.Models.Dto.VillaNumberDTO;
+@model VillaNumberDTO
+
+<form asp-action="DeleteVillaNumber" asp-controller="VillaNumber" method="post" >
+    <input asp-for="VillaNo" hidden readonly />
+    <br />
+    <div class="container border p-3">
+        <h1 class="h2 text-primary">Remove Villa</h1>
+        <hr />
+
+        <div class="row gy-3">
+            @*Villa No*@
+            <div class="col-12">
+                <div class="row gy-1">
+                    <div class="col-12 col-md-2">
+                        <label asp-for="VillaNo" class="form-label">Villa No</label>
+                    </div>
+                    <div class="col-12 col-md-10">
+                        <input type="text" class="form-control" asp-for="VillaNo" disabled readonly />
+                    </div>
+                </div>
+            </div>
+            @*Special Details*@
+            <div class="col-12">
+                <div class="row gy-1">
+                    <div class="col-12 col-md-2">
+                        <label asp-for="SpecialDetails" class="form-label">SpecialDetails</label>
+                    </div>
+                    <div class="col-12 col-md-10">
+                        <textarea disabled readonly class="form-control" rows="3" asp-for="SpecialDetails"></textarea>
+                    </div>
+                </div>
+            </div>
+            @*Villa Select*@
+            <div class="col-12">
+                <div class="row gy-1">
+                    <div class="col-12 col-md-2">
+                        <label asp-for="VillaId" class="form-label">Villa</label>
+                    </div>
+                    <div class="col-12 col-md-10">
+                        <select asp-for="VillaId" class="form-control" disabled>
+                            <option value="0" disabled selected >-- Select Villa --</option>
+                            <option selected value="@Model.VillaId" >@Model.Villa.Name</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            @*Buttons*@
+            <div class="col-12 offset-md-2 col-md-10">
+                <div class="row g-3">
+                    <div class="col-6">
+                        <button class="btn btn-danger w-100" type="submit">Delete</button>
+                    </div>
+                    <div class="col-6">
+                        <a class="btn btn-secondary w-100" asp-action="IndexVillaNumber" asp-controller="VillaNumber">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @*    <partial name="_ValidationScriptsPartial" />*@
+}

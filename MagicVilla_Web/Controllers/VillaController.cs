@@ -110,6 +110,7 @@ namespace MagicVilla_Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateVilla(VillaUpdateDTO villaUpdateDTO)
         {
             if (ModelState.IsValid)

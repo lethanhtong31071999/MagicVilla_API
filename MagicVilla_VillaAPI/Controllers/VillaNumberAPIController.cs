@@ -46,11 +46,11 @@ namespace MagicVilla_VillaAPI.Controllers
             return _response;
         }
 
-        [HttpGet("{villaNo}")]
+        [HttpGet("{villaNo}", Name = "GetVillaNumber")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(VillaNumberDTO))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        async public Task<ActionResult<APIResponse>> Get([FromRoute] int villaNo)
+        async public Task<ActionResult<APIResponse>> Get([FromRoute]int villaNo)
         {
             try
             {
@@ -138,7 +138,7 @@ namespace MagicVilla_VillaAPI.Controllers
 
                 // Response
                 _response.StatusCode = HttpStatusCode.Created;
-                _response.Result = newVillaNumber;
+                _response.Result = _mapper.Map<VillaNumberDTO>(newVillaNumber);
                 return CreatedAtRoute("GetVillaNumber", new { villaNo = newVillaNumber.VillaNo }, _response);
             }
             catch (Exception ex)

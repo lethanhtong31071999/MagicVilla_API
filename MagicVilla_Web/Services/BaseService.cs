@@ -20,7 +20,7 @@ namespace MagicVilla_Web.Services
         {
             try
             {
-                var client = _httpClientFactory.CreateClient("MagicAPI");
+                var client = _httpClientFactory.CreateClient("MagicVillaAPI");
                 var requestMessage = new HttpRequestMessage();
                 /* Request-Message includes 4 main properties: 
                     1. Url
