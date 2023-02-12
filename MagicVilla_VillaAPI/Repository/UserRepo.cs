@@ -39,7 +39,12 @@ namespace MagicVilla_VillaAPI.Repository
             var localUser = await base.Get(x => 
                 x.UserName.ToLower() == loginRequestDTO.UserName.ToLower()
                 && x.Password == loginRequestDTO.Password, isTracked: false);
-            if (localUser == null) return null;
+            if (localUser == null)
+                return new LoginResponseDTO
+                {
+                    Token = "",
+                    User = null,
+                };
 
             // Generate Token if user exist in database
             var tokenDiscriptor = new SecurityTokenDescriptor()
@@ -50,6 +55,7 @@ namespace MagicVilla_VillaAPI.Repository
                 Subject = new ClaimsIdentity(new List<Claim>()
                 {
                     new Claim(ClaimTypes.Name, localUser.Id.ToString()),
+                    new Claim("username", localUser.UserName),
                     new Claim(ClaimTypes.Role, localUser.Role)
                 }),
             };

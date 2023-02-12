@@ -5,6 +5,7 @@ using AutoMapper;
 using MagicVilla_VillaAPI.Repository.IRepository;
 using System.Net;
 using MagicVilla_VillaAPI.Models.Dto.VillaDTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MagicVilla_VillaAPI.Controllers
 {
@@ -46,6 +47,7 @@ namespace MagicVilla_VillaAPI.Controllers
             return _response;
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet]
         [Route("{id}", Name = "GetVilla")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(VillaDTO))]
