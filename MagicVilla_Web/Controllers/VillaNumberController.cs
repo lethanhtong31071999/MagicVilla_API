@@ -1,11 +1,14 @@
-﻿using MagicVilla_Web.Models;
+﻿using MagicVilla_Utility;
+using MagicVilla_Web.Models;
 using MagicVilla_Web.Models.Dto.VillaDTO;
 using MagicVilla_Web.Models.Dto.VillaNumberDTO;
 using MagicVilla_Web.Models.ViewModels;
 using MagicVilla_Web.Services.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using System.Data;
 
 namespace MagicVilla_Web.Controllers
 {
@@ -34,6 +37,7 @@ namespace MagicVilla_Web.Controllers
 
         // CREATE
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> CreateVillaNumber()
         {
             var res = await _villaService.GetAllAsync<APIResponse>();
@@ -56,11 +60,13 @@ namespace MagicVilla_Web.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> CreateVillaNumber([FromForm] VillaNumberCreateVM villaNumberCreateVM)
         {
             if (ModelState.IsValid)
             {
-                var res = await _villaNumberService.CreateAsync<APIResponse>(villaNumberCreateVM.VillaNumber);
+                var token = HttpContext.Session.GetString(SD.SessionToken);
+                var res = await _villaNumberService.CreateAsync<APIResponse>(villaNumberCreateVM.VillaNumber, token);
                 if (res != null && res.IsSuccess)
                 {
                     return RedirectToAction(nameof(IndexVillaNumber));
@@ -94,6 +100,7 @@ namespace MagicVilla_Web.Controllers
 
         // UPDATE
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> UpdateVillaNumber([FromQuery] int villaNo)
         {
             var viewModel = new VillaNumberUpdateVM();
@@ -124,11 +131,13 @@ namespace MagicVilla_Web.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> UpdateVillaNumber([FromForm]VillaNumberUpdateVM villaNumberUpdateVM)
         {
             if (ModelState.IsValid)
             {
-                var res = await _villaNumberService.UpdateAsync<APIResponse>(villaNumberUpdateVM.VillaNumber);
+                var token = HttpContext.Session.GetString(SD.SessionToken);
+                var res = await _villaNumberService.UpdateAsync<APIResponse>(villaNumberUpdateVM.VillaNumber, token);
                 if (res != null && res.IsSuccess)
                 {
                     return RedirectToAction(nameof(IndexVillaNumber));
@@ -155,6 +164,7 @@ namespace MagicVilla_Web.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteVillaNumber([FromQuery] int villaNo)
         {
             var res = await _villaNumberService.GetAsync<APIResponse>(villaNo);
@@ -166,9 +176,11 @@ namespace MagicVilla_Web.Controllers
             return BadRequest();
         }
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteVillaNumber([FromForm] VillaNumberDTO villaNumberDTO)
         {
-            var res = await _villaNumberService.DeleteAsync<APIResponse>(villaNumberDTO.VillaNo);
+            var token = HttpContext.Session.GetString(SD.SessionToken);
+            var res = await _villaNumberService.DeleteAsync<APIResponse>(villaNumberDTO.VillaNo, token);
             if (res != null && res.IsSuccess)
             {
                 return RedirectToAction(nameof(IndexVillaNumber));

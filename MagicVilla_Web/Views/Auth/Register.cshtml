@@ -1,0 +1,62 @@
+﻿@using MagicVilla_Web.Models.Dto.ApplicationUserDTO;
+@model RegisterRequestDTO
+
+<form method="post" asp-action="Login" asp-controller="Auth">
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-6 col-12">
+                <div class="d-flex align-items-center justify-content-center">
+                    <div class="border-3 w-100">
+                        <div class="text-center mb-2">
+                            <h1 class="fs-2 text-primary fw-bold">Register</h1>
+                        </div>
+                        <div asp-validation-summary="All"></div>
+                        <div class="row gx-3 mb-2 align-items-center">
+                            <div class="col-2">
+                                <label asp-for="UserName" class="form-label">Username</label>
+                            </div>
+                            <div class="col-10">
+                                <span class="text-danger" asp-validation-for="Password"></span>
+                                <input type="text" class="form-control" asp-for="UserName" placeholder="">
+                                <span class="text-danger" asp-validation-for="UserName"></span>
+                            </div>
+                        </div>
+                        <div class="row gx-3 mb-2 align-items-center">
+                            <div class="col-2">
+                                <label asp-for="Password" class="form-label">Password</label>
+                            </div>
+                            <div class="col-10">
+                                <input type="password" class="form-control" asp-for="Password" placeholder="">
+                                <span class="text-danger" asp-validation-for="Password"></span>
+                            </div>
+                        </div>
+                        <div class="row gx-3 mb-2 align-items-center">
+                            <div class="col-2">
+                                <label asp-for="Name" class="form-label">Name</label>
+                            </div>
+                            <div class="col-10">
+                                <input type="text" class="form-control" asp-for="Name" placeholder="">
+                                <span class="text-danger" asp-validation-for="Name"></span>
+                            </div>
+                        </div>
+                        <div class="row gx-3 mb-2 align-items-center">
+                            <div class="col-2">
+                                <label asp-for="Role" class="form-label">Role</label>
+                            </div>
+                            <div class="col-10">
+                                <input type="password" class="form-control" asp-for="Role" placeholder="">
+                                <span class="text-danger" asp-validation-for="Role"></span>
+                            </div>
+                        </div>
+                        <div class="col-10 offset-2">
+                            <div class="text-center mt-3">
+                                <input type="submit" class="btn btn-primary w-100" value="Register">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>

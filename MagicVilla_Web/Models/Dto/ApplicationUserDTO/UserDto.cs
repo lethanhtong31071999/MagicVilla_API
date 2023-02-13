@@ -1,4 +1,4 @@
-﻿namespace MagicVilla_VillaAPI.Models.Dto.ApplicationUserDTO
+﻿namespace MagicVilla_Web.Models.Dto.ApplicationUserDTO
 {
     public class UserDto
     {

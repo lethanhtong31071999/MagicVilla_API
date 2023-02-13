@@ -25,7 +25,7 @@ namespace MagicVilla_Web.Controllers
             {
                 return View(JsonConvert.DeserializeObject<List<VillaDTO>>(JsonConvert.SerializeObject(res.Result)));
             }
-            return NotFound();
+            return View(new List<VillaDTO>());
         }
 
         public IActionResult Privacy()

@@ -15,7 +15,7 @@ namespace MagicVilla_Web.Services
             url = configuration.GetValue<string>("ServiceUrls:VillaAPI");
         }
 
-        public async Task<T> CreateAsync<T>(VillaCreateDTO villaCreateDTO)
+        public async Task<T> CreateAsync<T>(VillaCreateDTO villaCreateDTO, string? token = null)
         {
             var apiRequest = new APIRequest()
             {
@@ -26,7 +26,7 @@ namespace MagicVilla_Web.Services
             return await base.SendAsync<T>(apiRequest);
         }
 
-        public async Task<T> DeleteAsync<T>(int id)
+        public async Task<T> DeleteAsync<T>(int id, string? token = null)
         {
             var apiRequest = new APIRequest()
             {
@@ -36,7 +36,7 @@ namespace MagicVilla_Web.Services
             return await base.SendAsync<T>(apiRequest);
         }
 
-        public async Task<T> GetAllAsync<T>()
+        public async Task<T> GetAllAsync<T>(string? token = null)
         {
             var apiRequest = new APIRequest()
             {
@@ -46,7 +46,7 @@ namespace MagicVilla_Web.Services
             return await base.SendAsync<T>(apiRequest);
         }
 
-        public async Task<T> GetAsync<T>(int id)
+        public async Task<T> GetAsync<T>(int id, string? token = null)
         {
             var apiRequest = new APIRequest()
             {
@@ -56,7 +56,7 @@ namespace MagicVilla_Web.Services
             return await base.SendAsync<T>(apiRequest);
         }
 
-        public async Task<T> UpdateAsync<T>(VillaUpdateDTO villaUpdateDTO)
+        public async Task<T> UpdateAsync<T>(VillaUpdateDTO villaUpdateDTO, string? token = null)
         {
             var apiRequest = new APIRequest()
             {
