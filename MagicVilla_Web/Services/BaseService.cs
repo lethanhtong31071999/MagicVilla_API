@@ -65,7 +65,7 @@ namespace MagicVilla_Web.Services
                     4. ErrorMessages
                  */
                 var client = _httpClientFactory.CreateClient("MagicVillaAPI");
-                if(string.IsNullOrEmpty(apiRequest.Token))
+                if(!string.IsNullOrEmpty(apiRequest.Token))
                 {
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiRequest.Token);
                 }
